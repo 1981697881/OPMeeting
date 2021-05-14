@@ -1,0 +1,127 @@
+{
+	"code": 1,
+	"msg": "模板数据",
+	"time": "1609145764",
+	"data": {
+		"home": [],
+		"user": [{
+			"id": 17958,
+			"type": "user",
+			"category": "user",
+			"name": "用户卡片",
+			"content": {
+				"name": "用户卡片",
+				"image": "https://shopro-1253949872.file.myqcloud.com/uploads/20200704/3fd138c2e95f80ecc11eebe312ffce94.png",
+				"style": 2,
+				"color": "#eeeeee"
+			},
+			"decorate_id": 1
+		}, {
+			"id": 17959,
+			"type": "order-card",
+			"category": "user",
+			"name": "订单卡片",
+			"content": [],
+			"decorate_id": 1
+		}, {
+			"id": 17960,
+			"type": "wallet-card",
+			"category": "user",
+			"name": "资产卡片",
+			"content": [],
+			"decorate_id": 1
+		}, {
+			"id": 17961,
+			"type": "nav-list",
+			"category": "user",
+			"name": "宫格列表",
+			"content": {
+				"name": "",
+				"list": [{
+					"name": "我的订单",
+					"image": "https://i.postimg.cc/tT8R5Qfj/all-order.png",
+					"path": "/pages/order/list",
+					"path_name": "优惠券",
+					"path_type": 1
+					},{
+					"name": "系统设置",
+					"image": "https://i.postimg.cc/28ccXkGh/a37d85ca8d8e7f1ca90874f89f524886.png",
+					"path": "/pages/user/set",
+					"path_name": "系统设置",
+					"path_type": 1
+				}, {
+					"name": "联系客服",
+					"image": "https://i.postimg.cc/q75pJHp3/5d53a6e7f940c5ef925f63c1810c8429.png",
+					"path": "/pages/public/kefu/index",
+					"path_name": "客服",
+					"path_type": 2
+				}]
+			},
+			"decorate_id": 1
+		}, {
+			"id": 17962,
+			"type": "goods-list",
+			"category": "user",
+			"name": "自定义商品",
+			"content": {
+				"ids": "2,3,5,10",
+				"image": "",
+				"name": ""
+			},
+			"decorate_id": 1
+		}],
+		"tabbar": [{
+			"id": 17957,
+			"type": "tabbar",
+			"category": "tabbar",
+			"name": "底部导航",
+			"content": {
+				"style": 1,
+				"color": "#999",
+				"activeColor": "#999000",
+				"list": [{
+					"name": "衣橱",
+					"image": "https://i.postimg.cc/XJNYqxrM/c4591c74c27a49bda021257d3c889225.png",
+					"activeImage": "https://i.postimg.cc/pdR2ckY9/558feb98726495d17128d07694d7ff47.png",
+					"path": "/pages/index/index",
+					"path_name": "衣橱",
+					"path_type": 1
+				}, {
+					"name": "购物车",
+					"image": "https://i.postimg.cc/h4zfdyCg/0ab4659f44404d6d4723c265ccd21f94.png",
+					"activeImage": "https://i.postimg.cc/5N8yPHdR/5273d6e90fb45e3d9189fba9fcbea47c.png",
+					"path": "/pages/index/cart",
+					"path_name": "购物车",
+					"path_type": 1
+				}, {
+					"name": "我的",
+					"image": "https://i.postimg.cc/T2D3wyw3/406848d5827325fead27224decffd141.png",
+					"activeImage": "https://i.postimg.cc/bvrzjrW8/8eca666cc43686d292113244b31e0664.png",
+					"path": "/pages/index/user",
+					"path_name": "用户-我的",
+					"path_type": 1
+				}],
+				"isshow": true
+			},
+			"decorate_id": 1
+		}],
+		"popup": [{
+			"id": 17956,
+			"type": "popup",
+			"category": "popup",
+			"name": "弹窗提醒",
+			"content": {
+				"list": [{
+					"image": "https://shopro-1253949872.file.myqcloud.com/uploads/20200704/9136ecddcddf6607184fab689207e7e3.png",
+					"path": "/pages/app/coupon/list",
+					"path_name": "优惠劵中心",
+					"page": ["/pages/index/index"],
+					"page_name": ["商城-首页"],
+					"path_type": 1,
+					"style": 1
+				}]
+			},
+			"decorate_id": 1
+		}]
+	}
+}
