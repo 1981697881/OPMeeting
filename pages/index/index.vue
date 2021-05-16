@@ -11,7 +11,7 @@
 					</block>
 				</cu-custom>
 			</view>
-		</view>
+		</view> 
 		<view class="content-box">
 			<view class="goods-list x-f">
 				<view class="goods-item" v-for="(goods,index) in goodsList" :key="index"><app-goods-card :detail="goods" :isTag="true"></app-goods-card></view>
@@ -124,21 +124,10 @@ export default {
 			let that = this;
 			that.isLoading = true;
 			that.loadStatus = 'loading';
-			let res = goods
-			if (res.code === 1) {
-				that.isLoading = false;
-				that.goodsList = [...that.goodsList, ...res.data.data];
-				that.lastPage = res.data.last_page;
-				if (that.listParams.page < res.data.last_page) {
-					that.loadStatus = '';
-				} else {
-					that.loadStatus = 'over';
-				}
-			}
-			/* that.$api('goods.lists', that.listParams).then(res => {
-				if (res.code === 1) {
+			that.$api('goods.commodityList').then(res => {
+				if (res.flag) {
 					that.isLoading = false;
-					that.goodsList = [...that.goodsList, ...res.data.data];
+					that.goodsList = [...that.goodsList, ...res.data];
 					that.lastPage = res.data.last_page;
 					if (that.listParams.page < res.data.last_page) {
 						that.loadStatus = '';
@@ -146,7 +135,7 @@ export default {
 						that.loadStatus = 'over';
 					}
 				}
-			}); */
+			});
 		}
 	}
 };

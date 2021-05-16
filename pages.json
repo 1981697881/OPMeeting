@@ -66,30 +66,6 @@
 				"title": "我的",
 				"group": "用户"
 			}
-		},{
-			"path": "pages/menu/menu",
-			"name": "menu",
-			"style": {
-				"navigationBarTitleText": "商城"
-			},
-			"meta": {
-				"auth": false,
-				"async": true,
-				"title": "小食和商品",
-				"group": "卖品"
-			}
-		},{
-			"path": "pages/menu/pay",
-			"name": "menu",
-			"style": {
-				"navigationBarTitleText": "支付"
-			},
-			"meta": {
-				"auth": true,
-				"async": true,
-				"title": "小食和商品",
-				"group": "卖品"
-			}
 		},
 		{
 			"path": "pages/index/view",
@@ -111,59 +87,6 @@
 	// 分包加载
 	// 不要接受编辑器的组件放置分包建议。因为那些不是在单个分包内使用的,也不知道为啥老报错。
 	"subPackages": [{
-			"root": "pages/activity",
-			"pages": [{
-					"path": "groupon/list",
-					"style": {
-						"navigationBarTitleText": "今日必拼"
-					},
-					"meta": {
-						"auth": false,
-						"async": true,
-						"title": "今日必拼",
-						"group": "活动"
-					}
-				},
-				{
-					"path": "seckill/list",
-					"style": {
-						"navigationBarTitleText": "限时秒杀"
-					},
-					"meta": {
-						"auth": false,
-						"async": true,
-						"title": "限时秒杀",
-						"group": "活动"
-					}
-				},
-				{
-					"path": "groupon/detail",
-					"style": {
-						"navigationBarTitleText": "拼团详情",
-						"enablePullDownRefresh": true
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				},
-				{
-					"path": "groupon/my-groupon",
-					"style": {
-						"navigationBarTitleText": "我的拼团",
-						"enablePullDownRefresh": true
-					},
-					"meta": {
-						"auth": true,
-						"async": true,
-						"title": "我的拼团",
-						"group": "活动"
-					}
-				}
-			]
-		},
-		{
 			"root": "pages/app",
 			"pages": [
 				// #ifdef MP-WEIXIN

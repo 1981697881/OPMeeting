@@ -2,24 +2,10 @@
 	<view class="wrap-box">
 		<view class="user-box">
 			<block v-if="template.length" v-for="(item, index) in template" :key="index">
-				<!-- 轮播 -->
-				<sh-banner v-if="item.type === 'banner'" :detail="item.content" @getbgcolor="getbgcolor"></sh-banner>
-				<!-- 菜单 -->
-				<sh-menu v-if="item.type === 'menu'" :detail="item.content" :menu="item.content.style" :imgW="94"></sh-menu>
 				<!-- 个人信息 -->
 				<sh-userinfo v-if="item.type === 'user'" :detail="item.content"></sh-userinfo>
-				<!-- 订单卡片 -->
-				<!-- <sh-order v-if="item.type === 'order-card'" :detail="item.content"></sh-order> -->
 				<!-- 功能列表 -->
 				<sh-nav v-if="item.type === 'nav-list'" :detail="item.content"></sh-nav>
-				<!-- 钱包 -->
-				<!-- <sh-wallet v-if="item.type === 'wallet-card'" :detail="item.content"></sh-wallet> -->
-				<!-- 九宫格列表 -->
-				<sh-grid v-if="item.type === 'grid-list'" :detail="item.content"></sh-grid>
-				<!-- 直播 -->
-				<!-- #ifdef MP-WEIXIN -->
-				<sh-live v-if="item.type === 'live' && HAS_LIVE" :detail="item.content"></sh-live>
-				<!-- #endif -->
 			</block>
 			<!-- 版本号 -->
 			<view class="foot_box">
@@ -42,39 +28,19 @@
 
 <script>
 import Wechat from '@/common/wechat/wechat';
-import shSearch from './components/sh-search.vue';
-import shBanner from './components/sh-banner.vue';
-import shHotGoods from './components/sh-hot-goods.vue';
-import shMenu from './components/sh-menu.vue';
 import shAdv from './components/sh-adv.vue';
-import shCoupon from './components/sh-coupon.vue';
-import shSeckill from './components/sh-seckill.vue';
-import shGroupon from './components/sh-groupon.vue';
 import shRichtext from './components/sh-richtext.vue';
 import shNav from './components/sh-nav.vue';
 import shUserinfo from './components/sh-userinfo.vue';
-import shOrder from './components/sh-order.vue';
-import shWallet from './components/sh-wallet.vue';
-import shGrid from './components/sh-grid.vue';
 import shTitleCard from './components/sh-title-card.vue';
 import appNoticeModal from '@/components/app-notice-modal/app-notice-modal.vue';
 import { mapMutations, mapActions, mapState } from 'vuex';
 export default {
 	components: {
-		shSearch,
-		shBanner,
-		shHotGoods,
-		shMenu,
 		shAdv,
-		shCoupon,
-		shSeckill,
-		shGroupon,
 		shRichtext,
 		shNav,
 		shUserinfo,
-		shOrder,
-		shWallet,
-		shGrid,
 		shTitleCard,
 		appNoticeModal
 	},
