@@ -41,7 +41,7 @@
 					"name": "我的订单",
 					"image": "https://i.postimg.cc/tT8R5Qfj/all-order.png",
 					"path": "/pages/order/list",
-					"path_name": "优惠券",
+					"path_name": "我的订单",
 					"path_type": 1
 				}, {
 					"name": "联系客服",

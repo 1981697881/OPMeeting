@@ -234,6 +234,18 @@
 						"title": "商品详情",
 						"group": "商城"
 					}
+				},
+				{
+					"path": "detail/list",
+					"style": {
+						"navigationBarTitleText": "商品详情"
+					},
+					"meta": {
+						"auth": false,
+						"async": true,
+						"title": "商品详情",
+						"group": "商城"
+					}
 				}
 				// 商品goods------end
 
@@ -315,8 +327,8 @@
 
 					},
 					"meta": {
-						"auth": true,
-						"async": true,
+						"auth": false,
+						"async": false,
 						"title": "我的订单",
 						"group": "用户"
 					}

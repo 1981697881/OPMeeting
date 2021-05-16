@@ -12,22 +12,18 @@
 			<scroll-view scroll-y="true" enable-back-to-top @scrolltolower="loadMore" class="scroll-box">
 				<view class="order-list" v-for="(order, orderIndex) in orderList" :key="order.id" @tap.stop="jump('/pages/order/detail', { id: order.id })">
 					<view class="order-head x-bc">
-						<text class="no">订单编号：{{ order.order_sn }}</text>
-						<text class="state">{{ order.status_name }}</text>
+						<text class="no">订单编号：{{ order.orderId }}</text>
+						<text class="state">{{ order.status==0?'未确认':'已确认' }}</text>
 					</view>
-					<view class="goods-order" v-for="goods in order.item" :key="goods.id">
+					<!-- <view class="goods-order" v-for="goods in order.item" :key="goods.id">
 						<view class="order-content"><app-mini-card :type="'order'" :detail="goods"></app-mini-card></view>
-					</view>
+					</view> -->
 					<view class="order-bottom">
 						<view class="all-msg x-f">
-							优惠：
-							<text class="all-unit">￥</text>
-							{{ order.discount_fee }} ，运费：
-							<text class="all-unit">￥</text>
-							{{ order.dispatch_amount }} ，需付款：
-							<view class="all-money">{{ order.pay_fee }}</view>
+							需付款：
+							<view class="all-money">{{ order.status==0?'待商家确认':order.payMoney }}</view>
 						</view>
-						<view class="btn-box x-f" v-if="order.btns.length">
+						<!-- <view class="btn-box x-f" v-if="order.btns.length">
 							<block v-for="orderBtn in order.btns" :key="orderBtn">
 								<button v-if="orderBtn === 'cancel'" @tap.stop="onCancel(order.id, orderIndex)" class="cu-btn obtn1">取消订单</button>
 								<button v-if="orderBtn === 'pay'" @tap.stop="onPay(order.id)" class="cu-btn obtn2">立即支付</button>
@@ -37,7 +33,7 @@
 								<button v-if="orderBtn === 'delete'" style="background:#FFEEEE;color:#E50808" @tap.stop="onDelete(order.id, orderIndex)" class="cu-btn obtn1">删除</button>
 								<button v-if="orderBtn === 'express'" @tap.stop="onExpress(order.id, orderIndex)" class="cu-btn obtn1">查看物流</button>
 							</block>
-						</view>
+						</view> -->
 					</view>
 				</view>
 				<!-- 空白页 -->
@@ -83,7 +79,7 @@ export default {
 					title: '全部',
 					type: 'all'
 				},
-				{
+				/* {
 					id: 1,
 					title: '待付款',
 					type: 'nopay'
@@ -102,7 +98,7 @@ export default {
 					id: 4,
 					title: '待评价',
 					type: 'nocomment'
-				}
+				} */
 			]
 		};
 	},
@@ -134,13 +130,12 @@ export default {
 			let that = this;
 			that.isLoading = true;
 			that.loadStatus = 'loading';
-			that.$api('order.index', {
-				type: that.orderType,
-				page: that.currentPage
+			that.$api('order.orderByOpenId', {
+				openId: uni.getStorageSync('openid'),
 			}).then(res => {
 				if (res.code === 1) {
 					that.isLoading = false;
-					that.orderList = [...that.orderList, ...res.data.data];
+					that.orderList = [...that.orderList, ...res.data];
 					that.lastPage = res.data.last_page;
 					if (that.currentPage < res.data.last_page) {
 						that.loadStatus = '';

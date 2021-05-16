@@ -141,7 +141,13 @@ export default {
 			url: 'app/api/spuList',
 			auth: false,
 			method: 'POST',
-			// desc: '卖品列表',
+			// desc: '订货会商品列表',
+		},
+		commodityListDetail: {
+			url: 'app/api/findSkuBySpuId ',
+			auth: false,
+			method: 'POST',
+			// desc: '订货会商品明细列表',
 		},
 		memberGoodsList: {
 			url: 'memberGoods/memberGoodsList',
@@ -426,6 +432,18 @@ export default {
 			auth: true,
 			method: 'GET',
 			// desc: '订单列表',
+		},
+		orderByOpenId: {
+			url: 'memberOrder/orderByOpenId',
+			auth: true,
+			method: 'POST',
+			// desc: '订货会订单列表',
+		},
+		generateOrder: {
+			url: 'memberOrder/generateOrder',
+			auth: true,
+			method: 'POST',
+			// desc: '订货会生成订单',
 		},
 		pre: {
 			url: 'order/pre',
