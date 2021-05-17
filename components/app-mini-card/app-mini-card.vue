@@ -4,16 +4,24 @@
 			<image class="goods-img" :src="detail.image" mode="aspectFill"></image>
 			<view class="y-start">
 				<view class="goods-title more-t">{{ detail.title }}</view>
-				<slot name="tipTag"></slot>
 				<view class="size-tip">{{ detail.goods_sku_text ? detail.goods_sku_text : '' }}</view>
 				<slot name="goodsBottom">
 					<view class="price">￥{{ detail.price }}</view>
 				</slot>
 			</view>
 		</view>
+		<view class="goods-box x-start" v-if="type === 'goodsType'">
+			<image class="goods-img" :src="detail.spuPhoto" style="height: 200rpx;" mode="aspectFill"></image>
+			<view class="y-start">
+				<view class="goods-title more-t">{{ detail.spuName }}</view>
+				<view class="size-tip">{{ detail.numberOfYards }}</view>
+				<slot name="goodsBottom">
+				</slot>
+			</view>
+		</view>
 		<view class="goods-box x-start"  v-if="type === 'sku'">
 			<view class="flex flex-direction-row" style="width: 100%;justify-content: space-between;" >
-				<view class="" style="line-height: 35px;">{{ detail.numberOfYards }}</view>
+				<view class="" style="line-height: 35px;width: 500rpx;">{{ detail.numberOfYards }}</view>
 				<slot name="goodsBottom" >
 					<view class="price">￥{{ detail.price }}</view>
 				</slot>

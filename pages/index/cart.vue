@@ -1,14 +1,6 @@
 <template>
 	<view class="page_box">
 		<view class="head_box" v-if="cartList.length">
-			<view class="safety-box x-f" v-if="false">
-				<text class="cuIcon-safe"></text>
-				<text>无忧退换，让你的购物体验简单省心</text>
-			</view>
-			<view class="tip-box x-f" v-if="false">
-				<text class="tag">全场满额减</text>
-				再购154.10元立享每满400元减20元 >
-			</view>
 			<view class="tool-box x-bc">
 				<view class="count-box">
 					共
@@ -21,14 +13,13 @@
 		<view class="content_box">
 			<checkbox-group class="block" v-if="cartList.length">
 				<view class="collect-list x-start" v-for="(g, index) in cartList" :key="index">
-					<view class="x-c" style="height: 200rpx;" @tap="onSel(index, g.checked)">
+					<view class="x-c" style="height: 200rpx;" @tap="onSel(g, g.checked)">
 						<checkbox :checked="g.checked" :class="{ checked: g.checked }" class="goods-radio round orange"></checkbox>
 					</view>
-					<app-mini-card :detail="g.goods" :sku="g.sku_price" :type="'sku'">
+					<app-mini-card :detail="g" type="goodsType">
 						<block slot="goodsBottom">
 							<view class="x-bc price-box">
-								<view class="price">￥{{ g.sku_price.price }}</view>
-								<view class="num-step"><uni-number-box @change="onChangeNum($event, g, index)" :value="g.goods_num" :step="1" :min="0"></uni-number-box></view>
+								<view class="num-step"><uni-number-box @change="onChangeNum($event, g, index)" :value="g.goodsNum" :step="1" :min="0"></uni-number-box></view>
 							</view>
 						</block>
 					</app-mini-card>
@@ -41,11 +32,10 @@
 				<label class="check-all x-f" @tap="onAllSel">
 					<radio :checked="allSel" :class="{ checked: allSel }" class="check-all-radio orange"></radio>
 					<text>全选</text>
-					<text>（{{ totalCount.totalNum }}）</text>
+					<text>（{{ totalCount }}）</text>
 				</label>
 				<view class="x-f">
-					<view class="price" v-if="!isTool">￥{{ totalCount.totalPrice.toFixed(2) }}</view>
-					<button class="cu-btn pay-btn" :disabled="!isSel" v-show="!isTool" @tap="onPay">结算</button>
+					<button class="cu-btn pay-btn" :disabled="totalCount<=0" v-show="!isTool" @tap="onPay">结算</button>
 					<button class="cu-btn del-btn" v-show="isTool" @tap="goodsDelete">删除</button>
 				</view>
 			</view>
@@ -76,6 +66,8 @@ export default {
 	data() {
 		return {
 			isTool: false,
+			cartList: [],
+			allSel: false,
 			emptyData: {
 				img: '/static/imgs/empty/emptyCart.png',
 				tip: '空空如也,快去逛逛吧~'
@@ -83,27 +75,45 @@ export default {
 		};
 	},
 	computed: {
-		...mapState({
+		/* ...mapState({
 			cartList: ({ cart }) => cart.cartList,
 			allSel: ({ cart }) => cart.allSelected
 		}),
-		...mapGetters(['totalCount', 'isSel'])
+		...mapGetters(['totalCount', 'isSel']) */
+		...mapState({
+			userInfo: state => state.user.userInfo,
+		}),
+		totalCount(){
+			let count = 0
+			this.cartList.forEach(item=>{
+				if(item.checked){
+					count += item.goodsNum
+				}
+			})
+			return count
+		}
 	},
 	onLoad() {
 		this.getCartList();
 	},
 	methods: {
-		...mapActions(['getCartList', 'changeCartList']),
 		// 更改商品数
 		async onChangeNum(e, g, index) {
 			if (g.goods_num !== e) {
-				uni.showLoading({
+				/* uni.showLoading({
 					mask: true
-				});
-				this.$set(this.cartList[index], 'goods_num', +e);
-				await this.changeCartList({ ids: [g.id], goodsNum: e, art: 'change' });
-				await uni.hideLoading();
+				}); */
+				this.$set(this.cartList[index], 'goodsNum', +e);
+				/*await this.changeCartList({ ids: [g.id], goodsNum: e, art: 'change' });
+				 await uni.hideLoading(); */
 			}
+		},
+		getCartList(){
+			let cartList = uni.getStorageSync('cartInfo');
+			cartList.forEach((item)=>{
+				item.checked = false
+			})
+			this.cartList = cartList;
 		},
 		// 路由跳转
 		jump(path, parmas) {
@@ -113,9 +123,20 @@ export default {
 			});
 		},
 		// 单选
-		onSel(index, flag) {
+		onSel(item, flag) {
 			let that = this;
-			that.$store.commit('selectItem', { index, flag });
+			that.$set(item,'checked',!flag)
+			let number = 0
+			that.cartList.forEach((item)=>{
+				if(item.checked){
+					number++
+				}	
+			})
+			if(number == that.cartList.length){
+				that.allSel = true
+			}else{
+				that.allSel = false
+			}
 		},
 		// 功能切换
 		onSet() {
@@ -124,39 +145,75 @@ export default {
 		// 全选
 		onAllSel() {
 			let that = this;
-			that.$store.commit('changeAllSellect'); //按钮切换全选。
-			that.$store.commit('getAllSellectCartList', that.allSel); //列表全选
+			if(that.allSel){
+				that.allSel = false
+				}else{
+					that.allSel = true
+					}
+			if(that.allSel){
+				that.cartList.forEach((item)=>{
+					item.checked = true
+				})
+			}else{
+				that.cartList.forEach((item)=>{
+					item.checked = false
+				})
+			}
+			
 		},
 		// 结算
 		onPay() {
 			let that = this;
 			let { cartList } = this;
-			if (this.isSel) {
+			if (that.userInfo.phoneNumber) {
 				let confirmcartList = [];
 				this.cartList.forEach(item => {
 					if (item.checked) {
 						confirmcartList.push({
-							goods_id: item.goods_id,
-							goods_num: item.goods_num,
-							sku_price_id: item.sku_price_id,
-							goods_price: item.sku_price.price
+							skuId: item.skuId,
+							spuId: item.spuId,
+							numberOfYards: item.numberOfYards,
+							skuColor: item.skuColor,
+							skuCount: item.goodsNum,
 						});
 					}
 				});
-				that.jump('/pages/order/confirm', { goodsList: JSON.stringify(confirmcartList), from: 'cart' });
+				that.isSubOrder = true;
+				that.$api('order.generateOrder', { 
+					openId: uni.getStorageSync('openid'),
+					phoneNumber: that.userInfo.phoneNumber,
+					memberOrderDetails:confirmcartList
+					}).then(res => {
+					if (res.flag) {
+						that.isSubOrder = false;
+						let cartInfo = uni.getStorageSync('cartInfo');
+						cartInfo.map((item,index) => {
+							if (item.checked) {
+								cartInfo.splice(index,1)
+							}
+						});
+						uni.setStorageSync('cartInfo',cartInfo)
+						this.$tools.toast('下单成功');
+						
+					}
+				});
+			}else{
+				uni.showToast({
+					icon: 'none',
+					title: '下单需要手机号码，请在“我的”授权手机号码'
+				});
 			}
 		},
 		// 删除
 		goodsDelete() {
 			let that = this;
-			let { cartList } = this;
-			let selectedIdsArray = [];
-			cartList.map(item => {
+			let cartList = uni.getStorageSync('cartInfo');
+			cartList.map((item,index) => {
 				if (item.checked) {
-					selectedIdsArray.push(item.id);
+					cartList.splice(index,1)
 				}
 			});
-			this.changeCartList({ ids: selectedIdsArray, art: 'delete' });
+			this.$tools.toast('已删除~');
 		}
 	}
 };

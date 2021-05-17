@@ -19,7 +19,8 @@
 						<view class="order-content"><app-mini-card :type="'order'" :detail="goods"></app-mini-card></view>
 					</view> -->
 					<view class="order-bottom">
-						<view class="all-msg x-f">
+						<view class="all-msg x-bc">
+							<text>{{order.createDatetime}}</text>
 							需付款：
 							<view class="all-money">{{ order.status==0?'待商家确认':order.payMoney }}</view>
 						</view>
@@ -133,7 +134,7 @@ export default {
 			that.$api('order.orderByOpenId', {
 				openId: uni.getStorageSync('openid'),
 			}).then(res => {
-				if (res.code === 1) {
+				if (res.flag) {
 					that.isLoading = false;
 					that.orderList = [...that.orderList, ...res.data];
 					that.lastPage = res.data.last_page;
