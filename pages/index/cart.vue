@@ -186,12 +186,14 @@ export default {
 					}).then(res => {
 					if (res.flag) {
 						that.isSubOrder = false;
-						let cartInfo = uni.getStorageSync('cartInfo');
-						cartInfo.map((item,index) => {
+						let cartInfo = [...that.cartList];
+						cartInfo.forEach((item,index) => {
 							if (item.checked) {
 								cartInfo.splice(index,1)
 							}
 						});
+						console.log(cartInfo)
+						that.cartList = cartInfo
 						uni.setStorageSync('cartInfo',cartInfo)
 						this.$tools.toast('下单成功');
 						

@@ -19,10 +19,9 @@
 						<view class="order-content"><app-mini-card :type="'order'" :detail="goods"></app-mini-card></view>
 					</view> -->
 					<view class="order-bottom">
-						<view class="all-msg x-bc">
-							<text>{{order.createDatetime}}</text>
-							需付款：
-							<view class="all-money">{{ order.status==0?'待商家确认':order.payMoney }}</view>
+						<view class="order-head x-bc" style="border-bottom: none;">
+							<text class="no">{{order.createDatetime}}</text>
+							<text class="state">需付款：￥{{ order.status==0?'待商家确认':order.payMoney }}</text>
 						</view>
 						<!-- <view class="btn-box x-f" v-if="order.btns.length">
 							<block v-for="orderBtn in order.btns" :key="orderBtn">

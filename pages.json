@@ -12,9 +12,7 @@
 			"title": "首页",
 			"aliasPath": "/", //对于h5端你必须在首页加上aliasPath并设置为/
 			"style": {
-				"navigationBarTitleText": "衣橱",
-				"enablePullDownRefresh": true,
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "主页"
 			},
 			"meta": {
 				"auth": false, //需要登录

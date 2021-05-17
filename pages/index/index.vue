@@ -1,15 +1,11 @@
 <template>
 	<view class="list-box">
 		<view class="head_box">
-			<view class="" style="position:relative;z-index: 10; background: #fff;">
-				<cu-custom :isBack="true">
-					<block slot="backText">
-						<view class="search-box flex align-center" @tap.stop>
+			<view class="" style="position:relative;z-index: 10; background: #fff;padding: 10rpx;">
+						<view class="search-box flex align-center" style="width: 100%;height: 70rpx;" @tap.stop>
 							<input @confirm="onSearch" @input="onInput" confirm-type="搜索" class="search flex-sub" type="text" v-model="searchVal" placeholder="商品搜索" />
 							<text v-show="searchVal" @tap="clearSearch" class="cuIcon-roundclosefill"></text>
 						</view>
-					</block>
-				</cu-custom>
 			</view>
 		</view> 
 		<view class="content-box">
