@@ -1,5 +1,5 @@
 <template>
-	<view class="">
+	<view class="" style="width: 100%;">
 		<view class="goods-box x-start" v-if="!type" @tap="jump('/pages/goods/detail/index', { id: detail.id })">
 			<image class="goods-img" :src="detail.image" mode="aspectFill"></image>
 			<view class="y-start">
@@ -11,13 +11,10 @@
 				</slot>
 			</view>
 		</view>
-		<view class="goods-box x-start" v-if="type === 'sku'" @tap="jump('/pages/goods/detail/index', { id: detail.id })">
-			<image class="goods-img" :src="sku.image ? sku.image : detail.image" mode=""></image>
-			<view class="y-start">
-				<view class="goods-title more-t">{{ detail.title }}</view>
-				<slot name="tipTag"></slot>
-				<view class="size-tip">{{ sku.goods_sku_text ? sku.goods_sku_text : '' }}</view>
-				<slot name="goodsBottom">
+		<view class="goods-box x-start"  v-if="type === 'sku'">
+			<view class="flex flex-direction-row" style="width: 100%;justify-content: space-between;" >
+				<view class="" style="line-height: 35px;">{{ detail.numberOfYards }}</view>
+				<slot name="goodsBottom" >
 					<view class="price">￥{{ detail.price }}</view>
 				</slot>
 			</view>
