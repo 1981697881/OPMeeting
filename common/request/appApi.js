@@ -445,6 +445,12 @@ export default {
 			method: 'POST',
 			// desc: '订货会生成订单',
 		},
+		findDetails: {
+			url: 'memberOrderDetails/findDetails',
+			auth: true,
+			method: 'POST',
+			// desc: '订货会订单详情',
+		},
 		pre: {
 			url: 'order/pre',
 			auth: true,

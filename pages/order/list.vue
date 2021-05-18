@@ -10,7 +10,7 @@
 		</view>
 		<view class="content_box">
 			<scroll-view scroll-y="true" v-show="" enable-back-to-top @scrolltolower="loadMore" class="scroll-box">
-				<view class="order-list" v-for="(order, orderIndex) in orderList" :key="order.id" @tap.stop="jump('/pages/order/detail', { id: order.id })">
+				<view class="order-list" v-for="(order, orderIndex) in orderList" :key="order.id" @tap.stop="jump('/pages/order/info', { orderId: order.orderId })">
 					<view class="order-head x-bc">
 						<text class="no">订单编号：{{ order.orderId }}</text>
 						<text class="state">{{ order.status==0?'未确认':'已确认' }}</text>
