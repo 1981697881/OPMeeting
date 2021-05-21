@@ -12,7 +12,7 @@
 					</view> -->
 					<view class="order-bottom">
 						<view class="order-head x-bc" style="border-bottom: none;">
-							<text class="no">尺码：{{ order.numberOfYards}}</text>
+							<text class="no">尺码：{{ order.sizeCode}}</text>
 							<text class="state">数量：{{ order.skuCount }}</text>
 						</view>
 					</view>

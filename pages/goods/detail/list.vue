@@ -25,7 +25,7 @@
 						</app-mini-card>
 					</view>
 				</checkbox-group> -->
-				<z-table :tableData="goodsList" :columns="columns" :tableHeight="tableHeight" :stickSide="stickSide"></z-table>
+				<z-table :tableData="goodsList" @cpnclick="Cpnclick" :columns="columns" :tableHeight="tableHeight" :stickSide="stickSide"></z-table>
 				<app-empty v-if="!goodsList.length && !isLoading" :emptyData="emptyData"></app-empty>
 			</scroll-view>
 		</view>
@@ -69,6 +69,7 @@ export default {
 			goodsList: [],
 			stickSide: true,
 			tableHeight: 0,
+			totalCount: 0,
 			columns: [],
 			isLoading: false,
 			orderType: null,
@@ -84,7 +85,7 @@ export default {
 			allSel: ({ cart }) => cart.allSelected
 		}),
 		...mapGetters(['totalCount', 'isSel']) */
-		totalCount() {
+		/* totalCount() {
 			let count = 0;
 			let that = this;
 			that.goodsList.forEach(item => {
@@ -95,12 +96,25 @@ export default {
 				});
 			});
 			return count;
-		}
+		} */
 	},
 	onLoad() {
 		this.getGoodsList();
 	},
 	methods: {
+		Cpnclick(val){
+			let count = 0;
+			let that = this;
+			val.forEach(item => {
+				that.columns.forEach((items,index) => {
+					if(index != 0){
+						count += item[items.key].goodsNum;
+					}
+				});
+			});
+			this.goodsList = [...val]
+			this.totalCount = count
+		},
 		// 更改商品数
 		async onChangeNum(e, g, index) {
 			if (g.goodsNum !== e) {
@@ -175,8 +189,35 @@ export default {
 			if (uni.getStorageSync('cartInfo') == '') {
 				uni.setStorageSync('cartInfo', []);
 			}
-			console.log(this.goodsList)
 			let cartList = uni.getStorageSync('cartInfo');
+			that.goodsList.forEach(item => {
+				if(item.constructor==Object){
+					for(let i in item){
+						if(item[i].goodsNum > 0){
+							let result = 0;
+							cartList.some(cart => {
+								if (item.skuId == cart.skuId && item.skuColor == cart.skuColor&& i == cart.numberOfYards) {
+									result++;
+									cart.goodsNum += item[i].goodsNum;
+									return true;
+								}
+							});
+							if (result == 0) {
+								cartList.push({
+									skuColor: item.skuColor,
+									numberOfYards: i,
+									skuId: item.skuId,
+									retailPrice: item.retailPrice,
+									spuPhoto: item.spuPhoto,
+									goodsNum: item[i].goodsNum,
+									spuId: item.spuId,
+									spuName: item.spuName
+								});
+							}
+						}
+					}
+				}
+			});
 			 /* this.goodsList.forEach(item => {
 				item.skus.forEach(items => {
 					if (items.goodsNum > 0) {
@@ -202,16 +243,9 @@ export default {
 					}
 				});
 			}); */
-			/*
-			that.goodsList.forEach(item => {
-				that.columns.forEach((items,index) => {
-					if(index != 0){
-						count += item[items.key].goodsNum;
-					}
-				});
-			});
+			console.log(cartList)
 			uni.setStorageSync('cartInfo', cartList);
-			this.$tools.toast('已添加购物车~'); */
+			this.$tools.toast('已添加购物车~');
 		}
 	}
 };

@@ -13,8 +13,9 @@
 		<view class="goods-box x-start" v-if="type === 'goodsType'">
 			<image class="goods-img" :src="detail.spuPhoto" style="height: 200rpx;" mode="aspectFill"></image>
 			<view class="y-start">
-				<view class="goods-title more-t">{{ detail.spuName }}</view>
-				<view class="size-tip">{{ detail.numberOfYards }}</view>
+				<view class="goods-title more-t">名称：{{ detail.spuName }}</view>
+				<view class="goods-title more-t">颜色：{{ detail.skuColor }}</view>
+				<view class="size-tip">尺码：{{ detail.numberOfYards }}</view>
 				<slot name="goodsBottom">
 				</slot>
 			</view>

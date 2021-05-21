@@ -85,7 +85,7 @@ export default {
 		// 键盘搜索
 		onSearch() {
 			let that = this;
-			that.listParams.keywords = that.searchVal;
+			that.listParams.spuId = that.searchVal;
 			that.goodsList = [];
 			this.listParams.page = 1;
 			that.getGoodsList();
@@ -96,7 +96,7 @@ export default {
 			that.listParams.category_id = 0;
 			// 输入不及时
 			setTimeout(() => {
-				that.listParams.keywords = that.searchVal;
+				that.listParams.spuId = that.searchVal;
 			}, 0);
 			// 防抖
 			if (timer !== null) {
@@ -111,7 +111,7 @@ export default {
 		// 清除搜索框
 		clearSearch() {
 			this.searchVal = '';
-			this.listParams.keywords = '';
+			this.listParams.spuId = '';
 			this.listParams.page = 1;
 			this.getGoodsList();
 		},
@@ -120,7 +120,7 @@ export default {
 			let that = this;
 			that.isLoading = true;
 			that.loadStatus = 'loading';
-			that.$api('goods.commodityList').then(res => {
+			that.$api('goods.commodityList',that.listParams).then(res => {
 				if (res.flag) {
 					that.isLoading = false;
 					that.goodsList = [...that.goodsList, ...res.data];

@@ -11,18 +11,28 @@
 		<view class="content_box">
 			<scroll-view scroll-y="true" v-show="" enable-back-to-top @scrolltolower="loadMore" class="scroll-box">
 				<view class="order-list" v-for="(order, orderIndex) in orderList" :key="order.id" @tap.stop="jump('/pages/order/info', { orderId: order.orderId })">
-					<view class="order-head x-bc">
+					<view class="order-head x-bc flex-wrap">
 						<text class="no">订单编号：{{ order.orderId }}</text>
 						<text class="state">{{ order.status==0?'未确认':'已确认' }}</text>
+						<text class="no">日期：{{order.createDatetime}}</text>
+						<text class="state">数量：{{ order.payMoney }}</text>
 					</view>
 					<!-- <view class="goods-order" v-for="goods in order.item" :key="goods.id">
 						<view class="order-content"><app-mini-card :type="'order'" :detail="goods"></app-mini-card></view>
 					</view> -->
 					<view class="order-bottom">
-						<view class="order-head x-bc" style="border-bottom: none;">
+						<view class="all-msg x-f">
+							订单金额：
+							<text class="all-unit">￥</text>
+							{{ order.payMoney }} ，优惠：
+							<text class="all-unit">￥</text>
+							{{ order.status==0?'待确认':order.payMoney }} ，实付款：
+							<view class="all-money">{{ order.status==0?'待确认':order.payMoney }}</view>
+						</view>
+						<!-- <view class="order-head x-bc" style="border-bottom: none;">
 							<text class="no">{{order.createDatetime}}</text>
 							<text class="state">需付款：￥{{ order.status==0?'待商家确认':order.payMoney }}</text>
-						</view>
+						</view> -->
 						<!-- <view class="btn-box x-f" v-if="order.btns.length">
 							<block v-for="orderBtn in order.btns" :key="orderBtn">
 								<button v-if="orderBtn === 'cancel'" @tap.stop="onCancel(order.id, orderIndex)" class="cu-btn obtn1">取消订单</button>

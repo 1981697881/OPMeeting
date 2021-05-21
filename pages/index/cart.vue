@@ -27,15 +27,16 @@
 			</checkbox-group>
 			<view class="empty-box x-c" v-else><app-empty :emptyData="emptyData"></app-empty></view>
 		</view>
-		<view class="foot_box " v-if="cartList.length">
+		<view class="foot_box">
 			<view class="tools-box x-bc">
 				<label class="check-all x-f" @tap="onAllSel">
 					<radio :checked="allSel" :class="{ checked: allSel }" class="check-all-radio orange"></radio>
 					<text>全选</text>
 					<text>（{{ totalCount }}）</text>
-				</label>
-				<view class="x-f">
-					<button class="cu-btn pay-btn" :disabled="totalCount<=0" v-show="!isTool" @tap="onPay">结算</button>
+					</label>
+					<view class="x-f">
+					<view class="price" v-if="!isTool">￥{{ totalMoney }}</view>
+					<button class="cu-btn pay-btn" :disabled="totalCount<=0||isSubOrder" v-show="!isTool" @tap="onPay">结算</button>
 					<button class="cu-btn del-btn" v-show="isTool" @tap="goodsDelete">删除</button>
 				</view>
 			</view>
@@ -66,6 +67,7 @@ export default {
 	data() {
 		return {
 			isTool: false,
+			isSubOrder: false,
 			cartList: [],
 			allSel: false,
 			emptyData: {
@@ -91,7 +93,16 @@ export default {
 				}
 			})
 			return count
-		}
+		},
+		totalMoney(){
+			let count = 0
+			this.cartList.forEach(item=>{
+				if(item.checked){
+					count += Number(item.retailPrice)
+				}
+			})
+			return count
+		},
 	},
 	onLoad() {
 		this.getCartList();
@@ -170,12 +181,15 @@ export default {
 				this.cartList.forEach(item => {
 					if (item.checked) {
 						confirmcartList.push({
-							skuId: item.skuId,
-							spuId: item.spuId,
-							numberOfYards: item.numberOfYards,
+							/* skuId: item.skuId,
+							spuId: item.spuId, */
+							retailPrice: item.retailPrice,
+							sizeCode: item.numberOfYards,
 							skuColor: item.skuColor,
+							spuName: item.spuName,
 							skuCount: item.goodsNum,
 						});
+						
 					}
 				});
 				that.isSubOrder = true;
@@ -184,15 +198,14 @@ export default {
 					phoneNumber: that.userInfo.phoneNumber,
 					memberOrderDetails:confirmcartList
 					}).then(res => {
-					if (res.flag) {
+					if (res.flag) { 
 						that.isSubOrder = false;
-						let cartInfo = [...that.cartList];
-						cartInfo.forEach((item,index) => {
-							if (item.checked) {
-								cartInfo.splice(index,1)
+						let cartInfo = [];
+						that.cartList.forEach((item,index) => {
+							if (!item.checked) {
+								cartInfo.push(item)
 							}
 						});
-						console.log(cartInfo)
 						that.cartList = cartInfo
 						uni.setStorageSync('cartInfo',cartInfo)
 						this.$tools.toast('下单成功');
@@ -209,12 +222,14 @@ export default {
 		// 删除
 		goodsDelete() {
 			let that = this;
-			let cartList = uni.getStorageSync('cartInfo');
+			let cartList = that.cartList;
 			cartList.map((item,index) => {
 				if (item.checked) {
 					cartList.splice(index,1)
 				}
 			});
+			that.cartList = cartList
+			uni.setStorageSync('cartInfo',cartList)
 			this.$tools.toast('已删除~');
 		}
 	}
@@ -222,6 +237,13 @@ export default {
 </script>
 
 <style lang="scss">
+/* #ifndef MP-WEIXIN */
+.foot_box{
+	position: fixed;
+	z-index: 99;
+	bottom: 100rpx;
+}
+/* #endif */
 .head_box {
 	.safety-box {
 		height: 80rpx;
@@ -283,7 +305,7 @@ export default {
 }
 
 .collect-list {
-	padding: 30rpx 20rpx;
+	padding: 20rpx 20rpx;
 	background: #fff;
 	margin-bottom: 20rpx;
 

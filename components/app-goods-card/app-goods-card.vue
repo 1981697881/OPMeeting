@@ -3,13 +3,13 @@
 		<view class="img-box">
 			<image class="img" :src="detail.spuPhoto" lazy-load mode="aspectFill"></image>
 		</view>
-		<view class="title more-t">{{ detail.spuName }}</view>
-		<!-- <view class="price-box">
-			<view class="flex x-bc align-end">
-				<view class="current">{{ detail.activity_type === 'groupon' ? detail.groupon_price : detail.price }}</view>
-				<view class="sales">销量{{ detail.sales }}件</view>
+		<!-- <view class="title more-t">{{ detail.spuName }}</view> -->
+		<view class="price-box">
+			<view class="flex x-bc align-end padding-top">
+				<view class="sales">{{ detail.spuName }}</view>
+				<view class="current">{{ detail.retailPrice}}</view>
 			</view>
-		</view> -->
+		</view>
 	</view>
 </template>
 

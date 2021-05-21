@@ -48,10 +48,10 @@
 									<view v-if="!col.isLink">
 										<!-- <view v-if="!col.render" v-html="getRowContent(row, col)"></view> -->
 										<!-- <renderComponents v-else :row="row" :col="col" /> -->
-										<view v-if="row[col.key].constructor != Object">{{ row[col.key] }}</view>
-										<view v-else class="collect-list x-start">
-											<view class="num-step"><uni-number-box @change="onChangeNum($event, row[col.key])" :value="row[col.key].goodsNum" :step="1" :min="-1"></uni-number-box></view>
+										<view v-if="Object.prototype.toString.call(row[col.key])=== '[object Object]'">
+											<uni-number-box @change="onChangeNum($event, row[col.key])" :value="row[col.key].goodsNum" :step="1" :min="-1"></uni-number-box>
 										</view>
+										<view v-else>{{ row[col.key] }}</view>
 									</view>
 									<!-- #ifdef H5 -->
 									<router-link v-else-if="setUrl(row, col).indexOf('http') != 0" :to="setUrl(row, col)" v-html="getRowContent(row, col)"></router-link>
@@ -187,11 +187,11 @@ export default {
 		},
 		textAlign: {
 			type: String,
-			default: 'left' // right|center|left
+			default: 'center' // right|center|left
 		},
 		titleTextAlign: {
 			type: String,
-			default: 'left' // right|center|left
+			default: 'center' // right|center|left
 		}
 	},
 	mounted() {
@@ -225,10 +225,11 @@ export default {
 	},
 	methods: {
 		// 更改商品数
-		async onChangeNum(e, g) {
+		onChangeNum(e, g) {
 			if (g.goodsNum !== e) {
+				/* g.goodsNum = +e */
 				this.$set(g, 'goodsNum', +e);
-				/* await this.changeCartList({ ids: [g.id], goodsNum: e, art: 'change' }); */
+				this.$emit('cpnclick',this.tableData)
 			}
 		},
 		async init() {
@@ -540,7 +541,7 @@ a {
 		position: sticky;
 		top: 0;
 		height: 64rpx;
-		z-index: 1;
+		z-index: 99;
 
 		.z-table-title-item {
 			border-bottom: solid 1rpx #dbdbdb;
@@ -551,6 +552,7 @@ a {
 			position: sticky;
 			top: 0;
 			left: 0;
+			z-index: 99;
 			border-right: solid 1rpx #dbdbdb;
 			box-sizing: border-box;
 		}
@@ -576,6 +578,8 @@ a {
 			align-items: center;
 			line-height: 64rpx;
 			box-sizing: border-box;
+			border-right: solid 1rpx #dbdbdb;
+			
 		}
 	}
 
@@ -588,8 +592,10 @@ a {
 	.z-table-stick-side {
 		position: sticky;
 		left: 0;
+		z-index: 99;
+		width: 120rpx !important;
 		background: #f7f9ff;
-		border-right: solid 1rpx #dbdbdb;
+		border-bottom: solid 1rpx #dbdbdb;
 		box-sizing: border-box;
 	}
 

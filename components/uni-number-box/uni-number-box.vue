@@ -1,10 +1,10 @@
 <template>
 	<view class="uni-numbox x-f">
-		<view @tap.stop="_calcValue('minus')" class="uni-numbox__minus">
+		<view style="z-index: 1;" @tap.stop="_calcValue('minus')" class="uni-numbox__minus">
 			<button class=" cu-btn uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }"><text class=" iconfont icon-reduce-fill"></text></button>
 		</view>
-		<input  :disabled="true" @blur="_onBlur" class="uni-numbox__value text-red" type="number" v-model="inputValue" />
-		<view @tap.stop="_calcValue('plus')" class="uni-numbox__plus">
+		<input style="z-index: 1;" :disabled="true" @blur="_onBlur" class="uni-numbox__value text-red" type="number" v-model="inputValue" />
+		<view style="z-index: 1;" @tap.stop="_calcValue('plus')" class="uni-numbox__plus">
 			<button class=" cu-btn uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }"><text class="iconfont icon-add-fill"></text></button>
 		</view>
 	</view>
@@ -13,7 +13,7 @@
 export default {
 	name: 'UniNumberBox',
 	props: {
-		value: {
+		value: {	
 			type: Number,
 			default: 1
 		},
