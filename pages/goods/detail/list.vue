@@ -137,6 +137,7 @@ export default {
 						obj.spuName = res.data.spuName;
 						obj.spuId = res.data.spuId;
 						obj.skuId = item.skuId;
+						obj.spuPhoto = res.data.spuPhoto;
 						obj.retailPrice = res.data.retailPrice;
 						res.data.sizes.forEach((items, index) => {
 							let jbj = {

@@ -15,7 +15,7 @@
 						<text class="no">订单编号：{{ order.orderId }}</text>
 						<text class="state">{{ order.status==0?'未确认':'已确认' }}</text>
 						<text class="no">日期：{{order.createDatetime}}</text>
-						<text class="state">数量：{{ order.payMoney }}</text>
+						<!-- <text class="state">数量：{{ order.payMoney }}</text> -->
 					</view>
 					<!-- <view class="goods-order" v-for="goods in order.item" :key="goods.id">
 						<view class="order-content"><app-mini-card :type="'order'" :detail="goods"></app-mini-card></view>
@@ -26,8 +26,8 @@
 							<text class="all-unit">￥</text>
 							{{ order.payMoney }} ，优惠：
 							<text class="all-unit">￥</text>
-							{{ order.status==0?'待确认':order.payMoney }} ，实付款：
-							<view class="all-money">{{ order.status==0?'待确认':order.payMoney }}</view>
+							{{ order.status==0?'待确认':order.discountAmount }} ，实付款：
+							<view class="all-money">{{ order.status==0?'待确认':order.actualMoney }}</view>
 						</view>
 						<!-- <view class="order-head x-bc" style="border-bottom: none;">
 							<text class="no">{{order.createDatetime}}</text>
