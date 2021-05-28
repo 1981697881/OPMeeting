@@ -131,6 +131,12 @@ export default {
 	},
 	/** 商品 ↓ **/
 	goods: {
+		classification: {
+			url: 'app/api/Classification',
+			auth: false,
+			method: 'POST',
+			// desc: '商品分类',
+		},
 		lists: {
 			url: 'goods/lists',
 			auth: false,
@@ -615,41 +621,5 @@ export default {
 			method: 'GET',
 			// desc: '评论列表',
 		}
-	},
-
-	/** 优惠券 ↓ **/
-	coupons: {
-		list: {
-			url: 'memberCouponDetail/list',
-			auth: true,
-			method: 'POST',
-			// desc: '个人中心优惠券列表',
-		},
-		lists: {
-			url: 'coupons/lists',
-			auth: false,
-			method: 'GET',
-			// desc: '首页优惠券',
-		},
-		get: {
-			url: 'coupons/get',
-			auth: true,
-			method: 'GET',
-			// desc: '领取',
-		},
-		detail: {
-			url: 'coupons/detail',
-			auth: true,
-			method: 'GET',
-			// desc: '购物券详情',
-		},
-		goods: {
-			url: 'coupons/goods',
-			auth: true,
-			method: 'GET',
-			// desc: '适用商品',
-		}
-	},
-
-
+	}, 
 };

@@ -2,15 +2,16 @@
 	<view class="list-box">
 		<view class="head_box">
 			<view class="" style="position:relative;z-index: 10; background: #fff;padding: 10rpx;">
-						<view class="search-box flex align-center" style="width: 100%;height: 70rpx;" @tap.stop>
-							<input @confirm="onSearch" @input="onInput" confirm-type="搜索" class="search flex-sub" type="text" v-model="searchVal" placeholder="商品搜索" />
-							<text v-show="searchVal" @tap="clearSearch" class="cuIcon-roundclosefill"></text>
-						</view>
+				<view class="search-box flex align-center" style="width: 100%;height: 70rpx;" @tap.stop>
+					<input @confirm="onSearch" @input="onInput" confirm-type="搜索" class="search flex-sub" type="text" v-model="searchVal" placeholder="商品搜索" />
+					<text v-show="searchVal" @tap="clearSearch" class="cuIcon-roundclosefill"></text>
+				</view>
 			</view>
-		</view> 
+			<view class="filter-item"><app-filter :classification="classification" @change="onFilter"></app-filter></view>
+		</view>
 		<view class="content-box">
 			<view class="goods-list x-f">
-				<view class="goods-item" v-for="(goods,index) in goodsList" :key="index"><app-goods-card :detail="goods" :isTag="true"></app-goods-card></view>
+				<view class="goods-item" v-for="(goods, index) in goodsList" :key="index"><app-goods-card :detail="goods" :isTag="true"></app-goods-card></view>
 			</view>
 			<!-- 空白页 -->
 			<app-empty v-if="!goodsList.length && !isLoading" :emptyData="emptyData"></app-empty>
@@ -32,12 +33,14 @@
 import appGoodsCard from '@/components/app-goods-card/app-goods-card.vue';
 import appEmpty from '@/components/app-empty/app-empty.vue';
 import goods from '@/csJson/moreGoodList.json';
+import appFilter from './components/app-filter.vue';
 import { mapMutations, mapActions, mapState } from 'vuex';
 let timer = null;
 export default {
 	components: {
 		appGoodsCard,
-		appEmpty
+		appEmpty,
+		appFilter
 	},
 	data() {
 		return {
@@ -46,6 +49,7 @@ export default {
 				tip: '暂无该商品，还有更多好货等着你噢~'
 			},
 			goodsList: [],
+			classification: [],
 			searchVal: '',
 			listParams: {
 				category_id: 0,
@@ -73,11 +77,12 @@ export default {
 			this.listParams.keywords = this.$Route.query.keywords;
 			this.searchVal = this.$Route.query.keywords;
 		}
+		this.getClassification();
 		this.getGoodsList();
 	},
 	methods: {
 		onFilter(e) {
-			this.listParams.order = e;
+			this.listParams.classificationId = e.defaultOrder;
 			this.goodsList = [];
 			this.listParams.page = 1;
 			this.getGoodsList();
@@ -115,12 +120,21 @@ export default {
 			this.listParams.page = 1;
 			this.getGoodsList();
 		},
+		// 商品分类
+		getClassification() {
+			let that = this;
+			that.$api('goods.classification', {}).then(res => {
+				if (res.flag) {
+					that.classification = res.data
+				}
+			});
+		},
 		// 商品列表
 		getGoodsList() {
 			let that = this;
 			that.isLoading = true;
 			that.loadStatus = 'loading';
-			that.$api('goods.commodityList',that.listParams).then(res => {
+			that.$api('goods.commodityList', that.listParams).then(res => {
 				if (res.flag) {
 					that.isLoading = false;
 					that.goodsList = [...that.goodsList, ...res.data];
