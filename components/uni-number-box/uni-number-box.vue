@@ -3,7 +3,8 @@
 		<view style="z-index: 1;" @tap.stop="_calcValue('minus')" class="uni-numbox__minus">
 			<button class=" cu-btn uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }"><text class=" iconfont icon-reduce-fill"></text></button>
 		</view>
-		<input style="z-index: 1;" :disabled="true" @blur="_onBlur" class="uni-numbox__value text-red" type="number" v-model="inputValue" />
+		<!-- :disabled="true" -->
+		<input style="z-index: 1;"  @blur="_onBlur" class="uni-numbox__value text-red" type="number" v-model="inputValue" />
 		<view style="z-index: 1;" @tap.stop="_calcValue('plus')" class="uni-numbox__plus">
 			<button class=" cu-btn uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }"><text class="iconfont icon-add-fill"></text></button>
 		</view>

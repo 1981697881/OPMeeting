@@ -84,8 +84,7 @@
 	],
 	// 分包加载
 	// 不要接受编辑器的组件放置分包建议。因为那些不是在单个分包内使用的,也不知道为啥老报错。
-	"subPackages": [
-		{
+	"subPackages": [{
 			"root": "pages/goods",
 			"pages": [
 				// 商品goods------start
@@ -155,7 +154,7 @@
 						"auth": true,
 						"async": false
 					}
-				},{
+				}, {
 					"path": "reserve",
 					"style": {
 						"navigationBarTitleText": "确认订单"
@@ -207,7 +206,7 @@
 						"auth": true,
 						"async": false
 					}
-				},{
+				}, {
 					"path": "info",
 					"style": {
 						"navigationBarTitleText": "订单详情"
@@ -569,7 +568,7 @@
 						"title": "修改手机号",
 						"group": "用户"
 					}
-				},{
+				}, {
 					"path": "group-ticket",
 					"style": {
 						"navigationBarTitleText": "兑换"
@@ -580,7 +579,7 @@
 						"title": "兑换赠送",
 						"group": "用户"
 					}
-				},{
+				}, {
 					"path": "groupticketinfo",
 					"style": {
 						"navigationBarTitleText": "团体票详情"
@@ -618,7 +617,7 @@
 						"group": "用户"
 
 					}
-				},{
+				}, {
 					"path": "wallet/recharge",
 					"style": {
 						"navigationBarTitleText": "充值"
@@ -680,6 +679,31 @@
 			"color": "#ccc",
 			"height": "1px"
 		}
+	},
+	"tabBar": {
+		"color": "#999",
+		"selectedColor": "#999000",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"height": "120rpx",
+		"fontSize": "25rpx",
+		"iconWidth": "60rpx",
+		"spacing": "3px",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/imgs/tabbar/tab_home.png",
+			"selectedIconPath": "static/imgs/tabbar/tab_home_sel.png",
+			"text": "衣橱"
+		}, {
+			"pagePath": "pages/index/cart",
+			"iconPath": "static/imgs/tabbar/tab_cart.png",
+			"selectedIconPath": "static/imgs/tabbar/tab_cart_sel.png",
+			"text": "购物车"
+		}, {
+			"pagePath": "pages/index/user",
+			"iconPath": "static/imgs/tabbar/tab_my.png",
+			"selectedIconPath": "static/imgs/tabbar/tab_my_sel.png",
+			"text": "我的"
+		}]
 	}
-
 }

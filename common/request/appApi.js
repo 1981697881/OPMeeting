@@ -4,14 +4,14 @@
 export default {
 	/** 初始化 ↓ **/
 	init: {
-		url: 'index/init',
+		url: 'web/index/init',
 		auth: false,
 		method: 'GET',
 		// desc: '初始化数据',
 	},
 	/** 上传图片 ↓ **/
 	upload: {
-		url: 'index/upload',
+		url: 'web/index/upload',
 		auth: true,
 		method: 'POST',
 		// desc: '上传',
@@ -19,7 +19,7 @@ export default {
 
 	/** 上传Base64图片 ↓ **/
 	uploadBase64: {
-		url: 'index/uploadBase64',
+		url: 'web/index/uploadBase64',
 		auth: false,
 		method: 'POST',
 		// desc: '上传Base64位图片',
@@ -27,7 +27,7 @@ export default {
 
 	/** 消息订阅模板 ↓ **/
 	messageIds: {
-		url: 'notification/template',
+		url: 'web/notification/template',
 		auth: true,
 		method: 'GET',
 		// desc: '订阅消息模板ids',
@@ -35,14 +35,14 @@ export default {
 
 	/** 模板信息 ↓ **/
 	template: {
-		url: 'index/template',
+		url: 'web/index/template',
 		auth: false,
 		method: 'GET',
 		// desc: '模板信息',
 	},
 	/** 自定义模板页面 ↓ **/
 	custom: {
-		url: 'index/custom',
+		url: 'web/index/custom',
 		auth: false,
 		method: 'GET',
 		// desc: '自定义模板页面',
@@ -51,13 +51,13 @@ export default {
 	/** 签到 ↓ **/
 	user_sign: {
 		index: {
-			url: 'user_sign/index',
+			url: 'web/user_sign/index',
 			auth: true,
 			method: 'GET',
 			// desc: '签到记录',
 		},
 		sign: {
-			url: 'user_sign/sign',
+			url: 'web/user_sign/sign',
 			auth: true,
 			method: 'POST',
 			// desc: '签到',
@@ -67,25 +67,25 @@ export default {
 	/** 同步路由 ↓ **/
 	dev: {
 		asyncLink: {
-			url: 'index/asyncLink',
+			url: 'web/index/asyncLink',
 			auth: false,
 			method: 'POST',
 			// desc: '路由表',
 		},
 		asyncDecorateScreenShot: {
-			url: 'index/asyncDecorateScreenShot',
+			url: 'web/index/asyncDecorateScreenShot',
 			auth: false,
 			method: 'POST',
 			// desc: '更新店铺装修截图',
 		},
 		asyncBannerBgColor: {
-			url: 'index/asyncBannerBgColor',
+			url: 'web/index/asyncBannerBgColor',
 			auth: false,
 			method: 'POST',
 			// desc: '路由表',
 		},
 		debug: {
-			url: 'index/debugLog',
+			url: 'web/index/debugLog',
 			auth: false,
 			method: 'POST',
 		}
@@ -93,7 +93,7 @@ export default {
 
 	/** 富文本  ↓ **/
 	richtext: {
-		url: 'index/richtext',
+		url: 'web/index/richtext',
 		auth: false,
 		method: 'GET',
 		// desc: '富文本数据',
@@ -101,14 +101,14 @@ export default {
 
 	/** 三级分类 ↓ **/
 	category: {
-		url: 'category',
+		url: 'web/category',
 		auth: false,
 		method: 'GET',
 		// desc: '三级分类',
 	},
 	/** 二级分类 ↓ **/
 	categoryGoods: {
-		url: 'category/goods',
+		url: 'web/category/goods',
 		auth: false,
 		method: 'GET',
 		// desc: '点餐用',
@@ -117,13 +117,13 @@ export default {
 	/** 商品评论 ↓ **/
 	goods_comment: {
 		list: {
-			url: 'goods_comment/index',
+			url: 'web/goods_comment/index',
 			auth: false,
 			method: 'GET',
 			// desc: '商品评论列表',
 		},
 		type: {
-			url: 'goods_comment/type',
+			url: 'web/goods_comment/type',
 			auth: false,
 			method: 'GET',
 			// desc: '商品评论分类',
@@ -132,103 +132,103 @@ export default {
 	/** 商品 ↓ **/
 	goods: {
 		classification: {
-			url: 'app/api/Classification',
+			url: 'web/app/api/Classification',
 			auth: false,
 			method: 'POST',
 			// desc: '商品分类',
 		},
 		lists: {
-			url: 'goods/lists',
+			url: 'web/goods/lists',
 			auth: false,
 			method: 'GET',
 			// desc: '商品列表',
 		},
 		commodityList: {
-			url: 'app/api/spuList',
+			url: 'web/app/api/spuList',
 			auth: false,
 			method: 'POST',
 			// desc: '订货会商品列表',
 		},
 		commodityListDetail: {
-			url: 'app/api/findSkuBySpuId ',
+			url: 'web/app/api/findSkuBySpuId ',
 			auth: false,
 			method: 'POST',
 			// desc: '订货会商品明细列表',
 		},
 		memberGoodsList: {
-			url: 'memberGoods/memberGoodsList',
+			url: 'web/memberGoods/memberGoodsList',
 			auth: true,
 			method: 'POST',
 			// desc: '商品订单列表',
 		},
 		seckillList: {
-			url: 'goods/seckillList',
+			url: 'web/goods/seckillList',
 			auth: false,
 			method: 'GET',
 			// desc: '秒杀列表',
 		},
 		activity: {
-			url: 'goods/activity',
+			url: 'web/goods/activity',
 			auth: false,
 			method: 'GET',
 			// desc: '活动商品',
 		},
 		myGroupon: {
-			url: 'activity_groupon/myGroupon',
+			url: 'web/activity_groupon/myGroupon',
 			auth: true,
 			method: 'GET',
 			// desc: '我的拼团',
 		},
 		grouponDetail: {
-			url: 'activity_groupon/detail',
+			url: 'web/activity_groupon/detail',
 			auth: true,
 			method: 'GET',
 			// desc: '拼团详情',
 		},
 		grouponItem: {
-			url: 'activity_groupon/index',
+			url: 'web/activity_groupon/index',
 			auth: false,
 			method: 'GET',
 			// desc: '拼购列表',
 		},
 		grouponList: {
-			url: 'goods/grouponList',
+			url: 'web/goods/grouponList',
 			auth: false,
 			method: 'GET',
 			// desc: '拼团商品列表',
 		},
 		detail: {
-			url: 'goods/detail',
+			url: 'web/goods/detail',
 			auth: false,
 			method: 'GET',
 			// desc: '商品详情',
 		},
 		favorite: {
-			url: 'goods/favorite',
+			url: 'web/goods/favorite',
 			auth: true,
 			method: 'POST',
 			// desc: '商品收藏',
 		},
 		favoriteList: {
-			url: 'goods/favoriteList',
+			url: 'web/goods/favoriteList',
 			auth: true,
 			method: 'GET',
 			// desc: '商品收藏列表',
 		},
 		viewList: {
-			url: 'goods/viewList',
+			url: 'web/goods/viewList',
 			auth: true,
 			method: 'GET',
 			// desc: '足迹列表',
 		},
 		viewDelete: {
-			url: 'goods/viewDelete',
+			url: 'web/goods/viewDelete',
 			auth: true,
 			method: 'POST',
 			// desc: '删除足迹',
 		},
 		storeAddress: {
-			url: 'goods/store',
+			url: 'web/goods/store',
 			auth: true,
 			method: 'GET',
 			// desc: '商品支持的自提点',
@@ -238,101 +238,101 @@ export default {
 	/** 用户 ↓ **/
 	user: {
 		info: {
-			url: 'user',
+			url: 'web/user',
 			auth: true,
 			method: 'GET',
 			// desc: '用户信息',
 		},
 		member: {
-			url: 'member/loginMember',
+			url: 'web/member/loginMember',
 			auth: true,
 			method: 'POST',
 			// desc: '用户信息',
 		},
 		transactionLogDorRList: {
-			url: 'transactionLog/transactionLogDorRList',
+			url: 'web/transactionLog/transactionLogDorRList',
 			auth: true,
 			method: 'POST',
 			// desc: '用户钱包账单列表',
 		},
 
 		profile: {
-			url: 'user/profile',
+			url: 'web/user/profile',
 			auth: true,
 			method: 'POST',
 			// desc: '修改用户信息',
 		},
 
 		changemobile: {
-			url: 'user/changemobile',
+			url: 'web/user/changemobile',
 			auth: true,
 			method: 'POST',
 			// desc: '修改手机号',
 		},
 
 		changepwd: {
-			url: 'user/changepwd',
+			url: 'web/user/changepwd',
 			auth: true,
 			method: 'POST',
 			// desc: '修改密码',
 		},
 
 		resetpwd: {
-			url: 'user/resetpwd',
+			url: 'web/user/resetpwd',
 			auth: false,
 			method: 'POST',
 			// desc: '重置密码',
 		},
 
 		mobileLogin: {
-			url: 'user/mobileLogin',
+			url: 'web/user/mobileLogin',
 			auth: false,
 			method: 'POST',
 			// desc: '手机验证码登录',
 		},
 
 		accountLogin: {
-			url: 'user/accountLogin',
+			url: 'web/user/accountLogin',
 			auth: false,
 			method: 'POST',
 			// desc: '账号密码登录',
 		},
 
 		getWxMiniProgramSessionKey: {
-			url: 'weChat/memberAuthorize',
+			url: 'web/weChat/memberAuthorize',
 			auth: false,
 			method: 'POST',
 			// desc: '获取用户session_key',
 		},
 		getWxMiniPhoneNumber: {
-			url: 'phone/phoneNumber',
+			url: 'web/phone/phoneNumber',
 			auth: false,
 			method: 'POST',
 			// desc: '获取用户手机号码',
 		},
 
 		wxMiniProgramLogin: {
-			url: 'weChat/memberLogin',
+			url: 'web/weChat/memberLogin',
 			auth: false,
 			method: 'POST',
 			// desc: '微信小程序登录',
 		},
 
 		wxOpenPlatformLogin: {
-			url: 'user/wxOpenPlatformLogin',
+			url: 'web/user/wxOpenPlatformLogin',
 			auth: false,
 			method: 'POST',
 			// desc: '微信APP登录',
 		},
 
 		register: {
-			url: 'user/register',
+			url: 'web/user/register',
 			auth: false,
 			method: 'POST',
 			// desc: '用户注册',
 		},
 		forgot: {
-			url: 'user/forgot',
+			url: 'web/user/forgot',
 			auth: false,
 			method: 'POST',
 			// desc: '忘记密码',
@@ -342,7 +342,7 @@ export default {
 	/** 分享 ↓ **/
 	share: {
 		add: {
-			url: 'share/add',
+			url: 'web/share/add',
 			auth: false,
 			method: 'POST',
 			// desc: '添加分享记录',
@@ -352,37 +352,37 @@ export default {
 	/** 位置 ↓ **/
 	address: {
 		area: {
-			url: 'address/area',
+			url: 'web/address/area',
 			auth: false,
 			method: 'GET',
 			// desc: '省市区',
 		},
 		list: {
-			url: 'address',
+			url: 'web/address',
 			auth: true,
 			method: 'GET',
 			// desc: '地址列表',
 		},
 		edit: {
-			url: 'address/edit',
+			url: 'web/address/edit',
 			auth: true,
 			method: 'POST',
 			// desc: '修改地址',
 		},
 		defaults: {
-			url: 'address/defaults',
+			url: 'web/address/defaults',
 			auth: true,
 			method: 'GET',
 			// desc: '默认地址',
 		},
 		info: {
-			url: 'address/info',
+			url: 'web/address/info',
 			auth: true,
 			method: 'GET',
 			// desc: '地址详情',
 		},
 		del: {
-			url: 'address/del',
+			url: 'web/address/del',
 			auth: true,
 			method: 'POST',
 			// desc: '删除',
@@ -392,7 +392,7 @@ export default {
 	/** 短信 ↓ **/
 	sms: {
 		send: {
-			url: 'sms/send',
+			url: 'web/sms/send',
 			auth: false,
 			method: 'POST',
 			// desc: '发送短信',
@@ -402,7 +402,7 @@ export default {
 	/** 常见问题 ↓ **/
 	faq: {
 		list: {
-			url: 'faq',
+			url: 'web/faq',
 			auth: false,
 			method: 'GET',
 			// desc: '常见问题列表',
@@ -411,20 +411,20 @@ export default {
 	/** 购物车 ↓ **/
 	cart: {
 		index: {
-			url: 'cart',
+			url: 'web/cart',
 			auth: true,
 			method: 'POST',
 			// desc: '购物车商品列表',
 		},
 		add: {
-			url: 'cart/add',
+			url: 'web/cart/add',
 			auth: true,
 			method: 'POST',
 			// desc: '添加购物车',
 		},
 
 		edit: {
-			url: 'cart/edit',
+			url: 'web/cart/edit',
 			auth: true,
 			method: 'POST',
 			// desc: '编辑购物车',
@@ -434,139 +434,139 @@ export default {
 	/** 订单 ↓ **/
 	order: {
 		index: {
-			url: 'order/index',
+			url: 'web/order/index',
 			auth: true,
 			method: 'GET',
 			// desc: '订单列表',
 		},
 		orderByOpenId: {
-			url: 'memberOrder/orderByOpenId',
+			url: 'web/memberOrder/orderByOpenId',
 			auth: true,
 			method: 'POST',
 			// desc: '订货会订单列表',
 		},
 		generateOrder: {
-			url: 'memberOrder/generateOrder',
+			url: 'web/memberOrder/generateOrder',
 			auth: true,
 			method: 'POST',
 			// desc: '订货会生成订单',
 		},
 		findDetails: {
-			url: 'memberOrderDetails/findDetails',
+			url: 'web/memberOrderDetails/findDetails',
 			auth: true,
 			method: 'POST',
 			// desc: '订货会订单详情',
 		},
 		pre: {
-			url: 'order/pre',
+			url: 'web/order/pre',
 			auth: true,
 			method: 'POST',
 			// desc: '预备提交订单',
 		},
 		createOrder: {
-			url: 'order/createOrder',
+			url: 'web/order/createOrder',
 			auth: true,
 			method: 'POST',
 			// desc: '提交订单',
 		},
 		detail: {
-			url: 'order/detail',
+			url: 'web/order/detail',
 			auth: true,
 			method: 'GET',
 			// desc: '订单详情',
 		},
 		itemDetail: {
-			url: 'order/itemDetail',
+			url: 'web/order/itemDetail',
 			auth: true,
 			method: 'GET',
 			// desc: '订单商品详情',
 		},
 		confirm: {
-			url: 'order/confirm',
+			url: 'web/order/confirm',
 			auth: true,
 			method: 'POST',
 			// desc: '确认收货',
 		},
 		refund: {
-			url: 'order/refund',
+			url: 'web/order/refund',
 			auth: true,
 			method: 'POST',
 			// desc: '申请退款',
 		},
 		cancel: {
-			url: 'order/cancel',
+			url: 'web/order/cancel',
 			auth: true,
 			method: 'POST',
 			// desc: '取消订单',
 		},
 		statusNum: {
-			url: 'order/statusNum',
+			url: 'web/order/statusNum',
 			auth: true,
 			method: 'GET',
 			// desc: '订单dot',
 		},
 		comment: {
-			url: 'order/comment',
+			url: 'web/order/comment',
 			auth: true,
 			method: 'POST',
 			// desc: '评价商品',
 		},
 		coupons: {
-			url: 'order/coupons',
+			url: 'web/order/coupons',
 			auth: true,
 			method: 'POST',
 			// desc: '商品可用优惠券',
 		},
 		aftersale: {
-			url: 'order_aftersale/aftersale',
+			url: 'web/order_aftersale/aftersale',
 			auth: true,
 			method: 'POST',
 			// desc: '申请售后',
 		},
 		aftersaleList: {
-			url: 'order_aftersale/index',
+			url: 'web/order_aftersale/index',
 			auth: true,
 			method: 'GET',
 			// desc: '售后列表',
 		},
 		aftersaleDetail: {
-			url: 'order_aftersale/detail',
+			url: 'web/order_aftersale/detail',
 			auth: true,
 			method: 'GET',
 			// desc: '售后列表详情',
 		},
 		deleteOrder: {
-			url: 'order/delete',
+			url: 'web/order/delete',
 			auth: true,
 			method: 'POST',
 			// desc: '删除订单',
 		},
 		deleteAftersaleOrder: {
-			url: 'order_aftersale/delete',
+			url: 'web/order_aftersale/delete',
 			auth: true,
 			method: 'POST',
 			// desc: '删除售后订单',
 		},
 		cancelAftersaleOrder: {
-			url: 'order_aftersale/cancel',
+			url: 'web/order_aftersale/cancel',
 			auth: true,
 			method: 'POST',
 			// desc: '取消售后订单',
 		},
 		expressList: {
-			url: 'order_express/index',
+			url: 'web/order_express/index',
 			auth: true,
 			method: 'GET',
 			// desc: '包裹列表',
 		},
 		expressDetail: {
-			url: 'order_express/detail',
+			url: 'web/order_express/detail',
 			auth: true,
 			method: 'GET',
 			// desc: '包裹详情',
 		},
 		/* itemDetail: {
-			url: 'order/itemDetail',
+			url: 'web/order/itemDetail',
 			auth: true,
 			method: 'GET',
 			// desc: '订单商品详情',
@@ -576,7 +576,7 @@ export default {
 	/** 支付 ↓ **/
 	pay: {
 		prepay: {
-			url: 'WeChat/payMoney',
+			url: 'web/WeChat/payMoney',
 			auth: true,
 			method: 'POST',
 			// desc: '发起支付',
@@ -585,7 +585,7 @@ export default {
 
 	/** 钱包明细 ↓ **/
 	user_wallet_log: {
-		url: 'user_wallet_log',
+		url: 'web/user_wallet_log',
 		auth: true,
 		method: 'GET',
 		// desc: '钱包明细',
@@ -594,13 +594,13 @@ export default {
 	/** 银行卡 ↓ **/
 	user_bank: {
 		info: {
-			url: 'user_bank/info',
+			url: 'web/user_bank/info',
 			auth: true,
 			method: 'GET',
 			// desc: '银行卡信息',
 		},
 		edit: {
-			url: 'user_bank/edit',
+			url: 'web/user_bank/edit',
 			auth: true,
 			method: 'POST',
 			// desc: '编辑银行卡信息',
@@ -610,13 +610,13 @@ export default {
 	/** 评论 ↓ **/
 	comment: {
 		submit: {
-			url: 'comment/submit',
+			url: 'web/comment/submit',
 			auth: true,
 			method: 'POST',
 			// desc: '提交评论',
 		},
 		list: {
-			url: 'comment/list',
+			url: 'web/comment/list',
 			auth: true,
 			method: 'GET',
 			// desc: '评论列表',

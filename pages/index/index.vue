@@ -21,9 +21,9 @@
 			<app-load v-model="isLoading"></app-load>
 		</view>
 		<!-- 自定义底部导航 -->
-		<app-tabbar></app-tabbar>
+		<!-- <app-tabbar></app-tabbar> -->
 		<!-- 关注弹窗 -->
-		<app-float-btn></app-float-btn>
+		<!-- <app-float-btn></app-float-btn> -->
 		<!-- 登录提示 -->
 		<app-login-modal></app-login-modal>
 	</view>
@@ -32,7 +32,6 @@
 <script>
 import appGoodsCard from '@/components/app-goods-card/app-goods-card.vue';
 import appEmpty from '@/components/app-empty/app-empty.vue';
-import goods from '@/csJson/moreGoodList.json';
 import appFilter from './components/app-filter.vue';
 import { mapMutations, mapActions, mapState } from 'vuex';
 let timer = null;

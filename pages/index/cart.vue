@@ -42,9 +42,9 @@
 			</view>
 		</view>
 		<!-- 自定义底部导航 -->
-		<app-tabbar></app-tabbar>
+		<!-- <app-tabbar></app-tabbar> -->
 		<!-- 关注弹窗 -->
-		<app-float-btn></app-float-btn>
+		<!-- <app-float-btn></app-float-btn> -->
 		<!-- 连续弹窗提醒 -->
 		<app-notice-modal></app-notice-modal>
 		<!-- 登录提示 -->
@@ -98,9 +98,10 @@ export default {
 			let count = 0
 			this.cartList.forEach(item=>{
 				if(item.checked){
-					count += Number(item.retailPrice)
+					count += Number(item.retailPrice) * Number(item.goodsNum)
 				}
 			})
+			console.log(count)
 			return count
 		},
 	},
@@ -241,7 +242,7 @@ export default {
 .foot_box{
 	position: fixed;
 	z-index: 99;
-	bottom: 100rpx;
+	bottom: 120rpx;
 }
 /* #endif */
 .head_box {
@@ -256,7 +257,6 @@ export default {
 			margin-right: 16rpx;
 		}
 	}
-
 	.tip-box {
 		font-size: 26rpx;
 		color: #999;

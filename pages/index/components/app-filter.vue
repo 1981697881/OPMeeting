@@ -3,8 +3,9 @@
 		<view class="mask cu-modal" :class="{ show: showSel }" style="z-index: 8;" @tap="hideModal"></view>
 		<view class="navbar">
 			<view class="sel-box flex flex-direction" v-show="showSel">
-				
+			<scroll-view class="scroll-box" scroll-y enable-back-to-top scroll-with-animation>
 				<view class="sel-item" v-for="(item,index) in classification" :key="index" @tap="onSel(item.classificationId,item.classificationName)" :class="{ 'sel-active': defaultOrder === item.classificationId && filterIndex === 0 }">{{item.classificationName}}</view>
+			</scroll-view>
 			</view>
 			<view class="nav-item y-f" :class="{ current: filterIndex === 0 }" @tap="tabClick(0)">
 				<view class="title-box flex align-center">
@@ -50,6 +51,7 @@ export default {
 			filterIndex: 0,
 			showSel: false, //综合选择
 			defaultOrder: 0, //综合
+			defaultName: '', //综合
 			priceOrder: 0, //价格
 			salesOrder: 0, //销量
 			newProdcutOrder:0//新品优先

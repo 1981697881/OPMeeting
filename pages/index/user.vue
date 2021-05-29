@@ -15,14 +15,14 @@
 				</view>
 			</view>
 			<!-- 关注弹窗 -->
-			<app-float-btn></app-float-btn>
+			<!-- <app-float-btn></app-float-btn> -->
 			<!-- 连续弹窗提醒 -->
 			<app-notice-modal></app-notice-modal>
 			<!-- 登录提示 -->
 			<app-login-modal></app-login-modal>
 		</view>
 		<!-- 自定义底部导航 -->
-		<app-tabbar></app-tabbar>
+		<!-- <app-tabbar></app-tabbar> -->
 	</view>
 </template>
 

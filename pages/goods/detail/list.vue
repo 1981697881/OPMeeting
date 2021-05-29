@@ -41,7 +41,7 @@
 		<!-- 自定义底部导航 -->
 		<app-tabbar></app-tabbar>
 		<!-- 关注弹窗 -->
-		<app-float-btn></app-float-btn>
+		<!-- <app-float-btn></app-float-btn> -->
 		<!-- 连续弹窗提醒 -->
 		<app-notice-modal></app-notice-modal>
 		<!-- 登录提示 -->
@@ -102,18 +102,18 @@ export default {
 		this.getGoodsList();
 	},
 	methods: {
-		Cpnclick(val){
+		Cpnclick(val) {
 			let count = 0;
 			let that = this;
 			val.forEach(item => {
-				that.columns.forEach((items,index) => {
-					if(index != 0){
+				that.columns.forEach((items, index) => {
+					if (index != 0) {
 						count += item[items.key].goodsNum;
 					}
 				});
 			});
-			this.goodsList = [...val]
-			this.totalCount = count
+			this.goodsList = [...val];
+			this.totalCount = count;
 		},
 		// 更改商品数
 		async onChangeNum(e, g, index) {
@@ -191,13 +191,14 @@ export default {
 				uni.setStorageSync('cartInfo', []);
 			}
 			let cartList = uni.getStorageSync('cartInfo');
+			console.log(that.goodsList)
 			that.goodsList.forEach(item => {
-				if(item.constructor==Object){
-					for(let i in item){
-						if(item[i].goodsNum > 0){
+				for (let i in item) {
+					if (item[i] != null && item[i].constructor == Object) {
+						if (item[i].goodsNum > 0) {
 							let result = 0;
 							cartList.some(cart => {
-								if (item.skuId == cart.skuId && item.skuColor == cart.skuColor&& i == cart.numberOfYards) {
+								if (item.skuId == cart.skuId && item.skuColor == cart.skuColor && i == cart.numberOfYards) {
 									result++;
 									cart.goodsNum += item[i].goodsNum;
 									return true;
@@ -219,7 +220,7 @@ export default {
 					}
 				}
 			});
-			 /* this.goodsList.forEach(item => {
+			/* this.goodsList.forEach(item => {
 				item.skus.forEach(items => {
 					if (items.goodsNum > 0) {
 						let result = 0;
@@ -244,7 +245,7 @@ export default {
 					}
 				});
 			}); */
-			console.log(cartList)
+			console.log(cartList);
 			uni.setStorageSync('cartInfo', cartList);
 			this.$tools.toast('已添加购物车~');
 		}
