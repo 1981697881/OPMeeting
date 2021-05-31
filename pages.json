@@ -143,60 +143,6 @@
 		{
 			"root": "pages/order",
 			"pages": [
-				// 订单order------start
-				{
-					"path": "confirm",
-					"style": {
-						"navigationBarTitleText": "确认订单"
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				}, {
-					"path": "reserve",
-					"style": {
-						"navigationBarTitleText": "确认订单"
-
-					},
-					"meta": {
-						"auth": false,
-						"async": true
-					}
-				},
-				{
-					"path": "business-address",
-					"style": {
-						"navigationBarTitleText": "选择自提点",
-						"navigationStyle": "custom"
-							// #ifdef APP-VUE
-							,
-						"app-plus": {
-							"titleNView": {
-								"type": "transparent"
-							}
-						}
-						// #endif
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				},
-				{
-					"path": "distribution",
-					"style": {
-						"navigationBarTitleText": "", //配送方式详情
-						"enablePullDownRefresh": true
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				},
 				{
 					"path": "detail",
 					"style": {
@@ -230,105 +176,6 @@
 						"title": "我的订单",
 						"group": "用户"
 					}
-				},
-				{
-					"path": "add-comment",
-					"style": {
-						"navigationBarTitleText": "发表评论"
-
-					},
-					"meta": {
-						"auth": false,
-						"async": true
-					}
-				},
-				{
-					"path": "express",
-					"name": "express",
-					"style": {
-						"navigationBarTitleText": "物流信息"
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				},
-				{
-					"path": "express-list",
-					"style": {
-						"navigationBarTitleText": "物流详情"
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				},
-				{
-					"path": "after-sale/refund",
-					"style": {
-						"navigationBarTitleText": "申请售后"
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				},
-				{
-					"path": "after-sale/list",
-					"style": {
-						"navigationBarTitleText": "退换/售后列表"
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				},
-				{
-					"path": "after-sale/detail",
-					"style": {
-						"navigationBarTitleText": "服务单详情"
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				},
-				{
-					"path": "after-sale/log",
-					"style": {
-						"navigationBarTitleText": "进度详情"
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				},
-				{
-					"path": "payment/method",
-					"style": {
-						"navigationBarTitleText": "支付方式"
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
-				},
-				{
-					"path": "payment/result",
-					"style": {
-						"navigationBarTitleText": "支付结果"
-
-					},
-					"meta": {
-						"auth": true,
-						"async": false
-					}
 				}
 				// 定单 order ------end
 			]
@@ -337,7 +184,6 @@
 			"root": "pages/public",
 			"pages": [
 				// 公共public ------ start
-
 				{
 					"path": "kefu/index",
 					"name": "kefu",

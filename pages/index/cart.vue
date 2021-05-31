@@ -182,8 +182,8 @@ export default {
 				this.cartList.forEach(item => {
 					if (item.checked) {
 						confirmcartList.push({
-							/* skuId: item.skuId,
-							spuId: item.spuId, */
+							/* skuId: item.skuId, */
+							spuId: item.spuId,
 							retailPrice: item.retailPrice,
 							sizeCode: item.numberOfYards,
 							skuColor: item.skuColor,
