@@ -1,32 +1,32 @@
 <template>
 	<view class="content_box">
-		<view class="x-f wrapper-box" :style="paddingBottom">
+		<view class="x-f wrapper-box" style="padding-bottom:100rpx">
 			<view class="scroll-box" style="background-color: #F6F6F6;">
 				<scroll-view class="left y-f" enable-back-to-top scroll-y>
 					<view class="type-list x-f" :class="[{ 'list-active': listId == index }]" v-for="(item, index) in categoryData" :key="index" @tap="onType(index)">
-						<view class="x-c list-item" :class="[{ 'line-active': listId == index }]">{{ item.name }}</view>
+						<view class="x-c list-item" :class="[{ 'line-active': listId == index }]">{{ item.classificationName }}</view>
 					</view>
 				</scroll-view>
 			</view>
 			<view style="height: 100%;width: 100%;">
 				<scroll-view scroll-y class="scroll-box" enable-back-to-top scroll-with-animation>
 					<view class="right" v-if="categoryData.length">
-						<image class="type-img" v-show="categoryData[listId].image" :src="categoryData[listId].image" lazy-load></image>
+						<image class="type-img" v-show="categoryData[listId].photo" :src="categoryData[listId].photo" lazy-load></image>
 						<view class="type-box x-c">
 							<text class="cuIcon-move"></text>
-							<text class="type-title">{{ categoryData[listId].name }}</text>
+							<text class="type-title">{{ categoryData[listId].classificationName }}</text>
 							<text class="cuIcon-move"></text>
 						</view>
 						<view class="item-list">
 							<view class="item-box x-f">
 								<view
 									class="y-f goods-item"
-									@tap="jump('/pages/goods/list', { id: list.id })"
-									v-for="(list, index1) in categoryData[listId].children"
+									@tap="jump('/pages/index/index', { classificationId: list.classificationId,classificationName: list.classificationName, })"
+									v-for="(list, index1) in categoryData[listId].goodsClassifications"
 									:key="index1"
 								>
-									<image class="item-img" lazy-load :src="list.image" mode="aspectFill"></image>
-									<text class="item-title one-t ">{{ list.name }}</text>
+									<image class="item-img" lazy-load :src="list.photo" mode="aspectFill"></image>
+									<text class="item-title one-t ">{{ list.classificationName }}</text>
 								</view>
 							</view>
 						</view>
@@ -38,57 +38,28 @@
 </template>
 
 <script>
-	import { mapMutations, mapActions, mapState, mapGetters } from 'vuex';
+import { mapMutations, mapActions, mapState, mapGetters } from 'vuex';
+import category from '@/csJson/category.json';
 export default {
 	components: {},
 	data() {
 		return {
 			listId: 0,
-			categoryData: {}
 		};
 	},
 	computed: {
-		...mapState({
-			tabbarList: state => state.init.templateData.tabbar[0].content.list
-		}),
-		// 是否是底部导航页面
-		isTabbar() {
-			if (this.tabbarList.length) {
-				let arr = [];
-				let pages = getCurrentPages();
-				let currentPath = pages[pages.length - 1].$page.fullPath;
-				for (let item of this.tabbarList) {
-					arr.push(item.path);
-				}
-				return arr.includes(currentPath);
-			}
-		},
-		paddingBottom() {
-			console.log(this.isTabbar);
-			if (this.isTabbar) {
-				return 'padding-bottom:100rpx';
-			}
-		}
+		
 	},
 	props: {
-		categoryId: {
-			type: Number,
-			default: 0
+		categoryData: {
+			type: Array,
+			default: []
 		}
 	},
 	created() {
-		this.getCategory();
+		
 	},
 	methods: {
-		getCategory() {
-			this.$api('category', {
-				id: this.categoryId
-			}).then(res => {
-				if (res.code === 1) {
-					this.categoryData = res.data.children;
-				}
-			});
-		},
 		onType(id) {
 			this.listId = id;
 		},
@@ -205,7 +176,7 @@ export default {
 
 				.item-title {
 					font-size: 24rpx;
-					line-height: 24rpx;
+					line-height: 30rpx;
 					margin-top: 10rpx;
 					width: 150rpx;
 					text-align: center;

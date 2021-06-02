@@ -7,7 +7,7 @@
 					<text v-show="searchVal" @tap="clearSearch" class="cuIcon-roundclosefill"></text>
 				</view>
 			</view>
-			<view class="filter-item"><app-filter :classification="classification" @change="onFilter"></app-filter></view>
+			<!-- <view class="filter-item"><app-filter :classification="classification" @change="onFilter"></app-filter></view> -->
 		</view>
 		<view class="content-box">
 			<view class="goods-list x-f">
@@ -69,14 +69,18 @@ export default {
 		}
 	},
 	onLoad() {
-		if (this.$Route.query.id) {
-			this.listParams.category_id = this.$Route.query.id;
+		if (this.$Route.query.classificationId) {
+			this.listParams.classificationId = this.$Route.query.classificationId;
+		}
+		if (this.$Route.query.classificationName) {
+			uni.setNavigationBarTitle({
+				title: this.$Route.query.classificationName
+			});
 		}
 		if (this.$Route.query.keywords) {
 			this.listParams.keywords = this.$Route.query.keywords;
 			this.searchVal = this.$Route.query.keywords;
 		}
-		this.getClassification();
 		this.getGoodsList();
 	},
 	methods: {
@@ -118,15 +122,6 @@ export default {
 			this.listParams.spuId = '';
 			this.listParams.page = 1;
 			this.getGoodsList();
-		},
-		// 商品分类
-		getClassification() {
-			let that = this;
-			that.$api('goods.classification', {}).then(res => {
-				if (res.flag) {
-					that.classification = res.data
-				}
-			});
 		},
 		// 商品列表
 		getGoodsList() {

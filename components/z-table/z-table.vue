@@ -593,7 +593,7 @@ a {
 		position: sticky;
 		left: 0;
 		z-index: 99;
-		width: 120rpx !important;
+		width: 150rpx !important;
 		background: #f7f9ff;
 		border-bottom: solid 1rpx #dbdbdb;
 		box-sizing: border-box;

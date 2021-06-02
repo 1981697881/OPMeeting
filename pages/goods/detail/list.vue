@@ -130,7 +130,7 @@ export default {
 				if (res.flag) {
 					that.isLoading = false;
 					let arr = [];
-					let columns = [{ key: 'skuColor', title: '颜色' }];
+					let columns = [{ key: 'skuColor', title: '颜色/尺码' }];
 					res.data.colorColors.forEach(item => {
 						let obj = {};
 						obj.skuColor = item.skuColor;

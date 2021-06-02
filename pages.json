@@ -6,27 +6,15 @@
 			"uni-(.*)": "@/components/uni-$1/uni-$1.vue"
 		}
 	},
-	"pages": [{
-			"path": "pages/index/index",
-			"name": "home",
-			"title": "首页",
-			"aliasPath": "/", //对于h5端你必须在首页加上aliasPath并设置为/
-			"style": {
-				"navigationBarTitleText": "主页"
-			},
-			"meta": {
-				"auth": false, //需要登录
-				"async": true, //是否同步
-				"title": "首页", //标题
-				"group": "商城" //分组
-			}
-		},
+	"pages": [
 		{
 			"path": "pages/index/category",
 			"name": "category",
+			"title": "首页",
+			"aliasPath": "/", //对于h5端你必须在首页加上aliasPath并设置为/
 			"style": {
-				"navigationBarTitleText": "分类"
-
+				"navigationBarTitleText": "展厅"
+		
 			},
 			"meta": {
 				"auth": false,
@@ -36,16 +24,29 @@
 			}
 		},
 		{
+			"path": "pages/index/index",
+			"name": "home",
+			"style": {
+				"navigationBarTitleText": "展厅"
+			},
+			"meta": {
+				"auth": false, //需要登录
+				"async": true, //是否同步
+				"title": "首页", //标题
+				"group": "商城" //分组
+			}
+		},
+		{
 			"path": "pages/index/cart",
 			"name": "cart",
 			"style": {
-				"navigationBarTitleText": "购物车"
+				"navigationBarTitleText": "开单"
 
 			},
 			"meta": {
 				"auth": false,
 				"async": true,
-				"title": "购物车",
+				"title": "开单",
 				"group": "商城"
 			}
 		},
@@ -536,15 +537,15 @@
 		"iconWidth": "60rpx",
 		"spacing": "3px",
 		"list": [{
-			"pagePath": "pages/index/index",
+			"pagePath": "pages/index/category",
 			"iconPath": "static/imgs/tabbar/tab_home.png",
 			"selectedIconPath": "static/imgs/tabbar/tab_home_sel.png",
-			"text": "衣橱"
+			"text": "展厅"
 		}, {
 			"pagePath": "pages/index/cart",
 			"iconPath": "static/imgs/tabbar/tab_cart.png",
 			"selectedIconPath": "static/imgs/tabbar/tab_cart_sel.png",
-			"text": "购物车"
+			"text": "开单"
 		}, {
 			"pagePath": "pages/index/user",
 			"iconPath": "static/imgs/tabbar/tab_my.png",
